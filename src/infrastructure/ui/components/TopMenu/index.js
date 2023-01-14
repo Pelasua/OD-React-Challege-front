@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import AppBar from '@mui/material/AppBar'
@@ -9,13 +9,22 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
 
+import { AppContext } from '../../../../App'
+
 function TopMenu ({ title, isTransparent }) {
+  const context = useContext(AppContext)
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {
+    setAnchorEl(null)
+  }
+  const handlePage = (event) => {
+    const page = event.target.getAttribute('data-page-name')
+
+    context.actions.selectPage(page)
     setAnchorEl(null)
   }
 
@@ -41,8 +50,8 @@ function TopMenu ({ title, isTransparent }) {
           'aria-labelledby': 'basic-button'
         }}
       >
-        <MenuItem onClick={handleClose}>Gallery</MenuItem>
-        <MenuItem onClick={handleClose}>Detail page</MenuItem>q
+        <MenuItem data-page-name="gallery" onClick={(handlePage)}>Gallery</MenuItem>
+        <MenuItem data-page-name="detailPage" onClick={handlePage}>Detail page</MenuItem>
       </Menu>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {title}
