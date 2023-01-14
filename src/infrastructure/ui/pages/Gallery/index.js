@@ -10,14 +10,14 @@ function Gallery () {
   }
 
   return (
-    <div>
+    <>
      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} variant="fullWidth" >
           <Tab label="Videos" />
           <Tab label="Photos" />
         </Tabs>
       </Box>
-    </div>
+    </>
   )
 }
 
