@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
+import React, { } from 'react'
 
-import logo from './logo.svg'
+import TopMenu from './infrastructure/ui/components/TopMenu'
 
 import './App.css'
 
 function App () {
-  const [page, setpage] = useState(null)
-
   return (
     <div className="App">
-      {page}
+      <TopMenu/>
+
     </div>
   )
 }
