@@ -4,10 +4,12 @@ import { css } from '@emotion/react'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 
 import { api } from '../../../adapters/api'
+import UserPost from '../../components/UserPost'
 
 function PageDetails () {
   const [page, setpage] = useState(null)
@@ -127,11 +129,26 @@ function PageDetails () {
           </Grid>
           <Box
             css={css`
-              background-color: red;
-              min-height: 100%;
-              width: 100%;
+              height: calc(100vh - 320px);
+              margin-top: 20px;
+              overflow-y: auto;
             `}
-          ></Box>
+          >
+            {page.comments.map((user, i) => (
+              <>
+                <UserPost
+                  key={i}
+                  userName={user.userName}
+                  profilePictureUrl={user.profilePicture}
+                  post={user.comment}
+                  date={user.date}
+                  likes={user.likes}
+                  responses={user.responses}
+                />
+                <Divider />
+              </>
+            ))}
+          </Box>
         </Box>
       )}
     </Box>
