@@ -1,6 +1,4 @@
 import React, { createContext, useState } from 'react'
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
 import Box from '@mui/material/Box'
 
 import '@fontsource/roboto'
@@ -9,7 +7,7 @@ import TopMenu from './infrastructure/ui/components/TopMenu'
 import Gallery from './infrastructure/ui/pages/Gallery'
 import PageDetails from './infrastructure/ui/pages/PageDetails'
 
-import * as appStyles from './App.scss'
+import './App.scss'
 
 export const AppContext = createContext(null)
 function App () {
@@ -22,10 +20,19 @@ function App () {
   })
 
   return (
-    <Box className="App" css={css`${appStyles}`}>
+    <Box
+      className="App"
+    >
       <AppContext.Provider value={{ store, actions }}>
-        <TopMenu title={store.selectedPage === 'gallery' ? 'Gallery'.toUpperCase() : 'Page Details'.toUpperCase()} isTransparent={store.selectedPage === 'pageDetails'}/>
-        {store.selectedPage === 'gallery' ? <Gallery/> : <PageDetails/>}
+        <TopMenu
+          title={
+            store.selectedPage === 'gallery'
+              ? 'Gallery'.toUpperCase()
+              : 'Page Details'.toUpperCase()
+          }
+          isTransparent={store.selectedPage !== 'gallery'}
+        />
+        {store.selectedPage === 'gallery' ? <Gallery /> : <PageDetails />}
       </AppContext.Provider>
     </Box>
   )
