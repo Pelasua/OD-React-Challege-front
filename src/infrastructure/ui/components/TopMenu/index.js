@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react'
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import MenuIcon from '@mui/icons-material/Menu'
 import MoreIcon from '@mui/icons-material/MoreVert'
 import AppBar from '@mui/material/AppBar'
@@ -29,49 +31,87 @@ function TopMenu ({ title, isTransparent }) {
   }
 
   return (
-    <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            onClick={handleClick}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button'
-        }}
-      >
-        <MenuItem data-page-name="gallery" onClick={(handlePage)}>Gallery</MenuItem>
-        <MenuItem data-page-name="detailPage" onClick={handlePage}>Detail page</MenuItem>
-      </Menu>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {title}
-          </Typography>
-          <IconButton
-            size="large"
-            aria-label="display more actions"
-            edge="end"
-            color="inherit"
-          >
-            <MoreIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+    <AppBar
+      className={`top-menu ${isTransparent ? 'transparent' : ''}`}
+      position="static"
+      css={css`
+        position: fixed;
+        background: rgb(164, 125, 214);
+        background: linear-gradient(
+          90deg,
+          rgba(164, 125, 214, 1) 0%,
+          rgba(145, 92, 212, 1) 37%,
+          rgba(73, 16, 173, 1) 100%
+        );
+
+        &.transparent {
+          background: transparent;
+        }
+      `}
+    >
+      <Toolbar>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+          onClick={handleClick}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          css={css`
+            &
+              > .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+              color: white;
+              background: rgb(164, 125, 214);
+            }
+          `}
+        >
+          <MenuItem data-page-name="gallery" onClick={handlePage}>
+            Gallery
+          </MenuItem>
+          <MenuItem data-page-name="detailPage" onClick={handlePage}>
+            Detail page
+          </MenuItem>
+        </Menu>
+        <Typography
+          variant="h7"
+          component="div"
+          align="center"
+          css={css`
+            flex-grow: 1;
+            font-weight: bold;
+            letter-spacing: 2px;
+          `}
+        >
+          {title.toUpperCase()}
+        </Typography>
+        <IconButton
+          size="large"
+          aria-label="display more actions"
+          edge="end"
+          color="inherit"
+        >
+          <MoreIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
   )
 }
 
 TopMenu.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   isTransparent: PropTypes.bool
+}
+
+TopMenu.defaultProps = {
+  isTransparent: false
 }
 
 export default TopMenu
