@@ -28,7 +28,7 @@ function App () {
           title={
             store.selectedPage === 'gallery'
               ? 'Gallery'.toUpperCase()
-              : 'Page Details'.toUpperCase()
+              : 'Detail Page'.toUpperCase()
           }
           isTransparent={store.selectedPage !== 'gallery'}
         />

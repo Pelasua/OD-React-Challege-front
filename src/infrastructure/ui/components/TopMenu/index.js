@@ -36,6 +36,8 @@ function TopMenu ({ title, isTransparent }) {
       position="static"
       css={css`
         position: fixed;
+        z-index: 99999;
+        box-shadow: none;
         background: rgb(164, 125, 214);
         background: linear-gradient(
           90deg,
@@ -70,10 +72,12 @@ function TopMenu ({ title, isTransparent }) {
           open={open}
           onClose={handleClose}
           css={css`
+          z-index: 99999;
             &
               > .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
               color: white;
-              background: rgb(164, 125, 214);
+              background: rgba(73, 16, 173, 1);
+
             }
           `}
         >
