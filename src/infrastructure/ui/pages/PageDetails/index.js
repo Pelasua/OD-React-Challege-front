@@ -28,10 +28,6 @@ function PageDetails () {
       })
   }, [])
 
-  useEffect(() => {
-    console.log(page)
-  }, [page])
-
   return (
     <Box>
       {page && (
