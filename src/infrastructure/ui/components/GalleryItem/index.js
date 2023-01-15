@@ -10,6 +10,7 @@ import PropTypes from 'prop-types'
 function GalleryItem ({ type, content }) {
   const videoItem = (
     <Box
+      data-testid='videoItem'
       css={css`
         position: relative;
         width: 100%;
@@ -54,6 +55,7 @@ function GalleryItem ({ type, content }) {
 
   const photoItem = (
     <Box
+      data-testid='photoItem'
       css={css`
         position: relative;
         width: 100%;
@@ -64,7 +66,7 @@ function GalleryItem ({ type, content }) {
         }
       `}
     >
-       <IconButton
+      <IconButton
         css={css`
           position: absolute;
           right: 0%;
@@ -85,6 +87,7 @@ function GalleryItem ({ type, content }) {
 
   return (
     <Box
+      data-testid='galleryItem'
       css={css`
         width: calc(100% - 40px);
         height: 250px;
@@ -98,10 +101,6 @@ function GalleryItem ({ type, content }) {
 GalleryItem.propTypes = {
   type: PropTypes.oneOf(['photo', 'video']).isRequired,
   content: PropTypes.string.isRequired
-}
-
-GalleryItem.defaultProps = {
-  isTransparent: false
 }
 
 export default GalleryItem
