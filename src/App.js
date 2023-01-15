@@ -24,7 +24,7 @@ function App () {
   return (
     <Box className="App" css={css`${appStyles}`}>
       <AppContext.Provider value={{ store, actions }}>
-        <TopMenu title={store.selectedPage === 'gallery' ? 'Gallery'.toUpperCase() : 'Page Details'.toUpperCase()}/>
+        <TopMenu title={store.selectedPage === 'gallery' ? 'Gallery'.toUpperCase() : 'Page Details'.toUpperCase()} isTransparent={store.selectedPage === 'pageDetails'}/>
         {store.selectedPage === 'gallery' ? <Gallery/> : <PageDetails/>}
       </AppContext.Provider>
     </Box>

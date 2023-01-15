@@ -44,6 +44,10 @@ function TopMenu ({ title, isTransparent }) {
           rgba(73, 16, 173, 1) 100%
         );
 
+        & > .css-hyum1k-MuiToolbar-root{
+          height: 70px;
+        }
+
         &.transparent {
           background: transparent;
         }
